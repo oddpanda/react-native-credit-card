@@ -129,7 +129,7 @@ class CreditCard extends Component {
         const isAmex = this.state.type && this.state.type.name === "amex";
         const cardStyle = [styles.container, {width: this.props.width, height: this.props.height, backgroundColor: this.props.bgColor}, this.props.style];
         return (
-            <View style={cardStyle}>
+            <View style={styles.cardStyle}>
                 <FlipCard
                     style={[styles.container, {width: this.props.width, height: this.props.height, backgroundColor: this.props.bgColor}, this.props.style]}
                     friction={6}
@@ -137,7 +137,7 @@ class CreditCard extends Component {
                     flipHorizontal={true}
                     flipVertical={false}
                     flip={this.props.focused === 'cvc'}
-                    clickable={this.props.clickable}
+                    clickable={true}
                     onFlipped={(isFlipped)=>{console.log('isFlipped', isFlipped)}}
                     >
                     <View style={[styles.front, {width: this.props.width, height: this.props.height}]}>
@@ -160,8 +160,6 @@ class CreditCard extends Component {
                             <View style={styles.info}>
                                 <View style={styles.number}><Text style={styles.textNumber}>{this.getValue("number")}</Text></View>
                                 <View style={styles.rowWrap}>
-                                    <View style={styles.name}><Text style={styles.textName}>{this.getValue("name")}</Text></View>
-                                    <View style={styles.validthru}><Text style={styles.textValidThru}>VALID THRU</Text></View>
                                     <View
                                         style={styles.expiry}
                                         data-before={this.props.expiryBefore}
@@ -195,7 +193,7 @@ const styles = StyleSheet.create({
     container: {
         borderRadius: 8,
         borderWidth: 0,
-        flex: null,
+        flex: 1,
     },
     logo: {
         height: 35,
@@ -225,7 +223,8 @@ const styles = StyleSheet.create({
     expiry: {
         flex: 1,
         alignItems: 'flex-end',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: '90%',
     },
     rowWrap: {
         flexDirection: 'row',
@@ -235,9 +234,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     validthru: {
-        flex: 1,
-        alignItems: 'flex-end',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: '95%',
     },
     textValidThru: {
         fontSize: 8,
@@ -253,8 +251,9 @@ const styles = StyleSheet.create({
     },
     textNumber: {
         color: '#fff',
-        fontSize: 21,
+        fontSize: 22,
         textAlign: 'center',
+        marginTop: '25%',
         marginBottom: 10,
         backgroundColor: 'transparent',
     },
@@ -332,7 +331,6 @@ CreditCard.defaultProps = {
     width: 300,
     height: 180,
     bgColor: '#191278',
-    clickable: true,
 };
 
 CreditCard.CardImages = images;
